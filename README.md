@@ -1,5 +1,33 @@
 # AngularProject
 
+# Permalink
+
+[Project](http://localhost:4200/)
+[GitHub](https://github.com/melikeay45/Angular-my_one_page)
+[Angular GitHub](https://github.com/angular/angular-cli)
+[Angular IO](https://angular.io/)
+[npm](https://www.npmjs.com/)
+
+---
+
+## Kurulumlar
+
+```sh
+> node -v
+> npm -v
+> npm version
+> npm list -g
+> npm install -g typescript
+> npm install -g @angular/cli
+> ng version
+> ng v
+> ng new one-page
+> cd one-page/
+> ng serve
+> ng serve --port 9999  0<=PORT<=65535 PORT<=1024
+> ng --help
+```
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.0.
 
 ## Development server
