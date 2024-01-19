@@ -3,7 +3,7 @@
 # Permalink
 
 [Project](http://localhost:4200/)
-[GitHub](https://github.com/melikeay45/Angular-my_one_page)
+[GitHub](https://github.com/melikeay45/Angular-Project)
 [Angular GitHub](https://github.com/angular/angular-cli)
 [Angular IO](https://angular.io/)
 [npm](https://www.npmjs.com/)
