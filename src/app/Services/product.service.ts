@@ -18,11 +18,13 @@ export class ProductService {
   }
 
   getSingleProduct(id: Number): Observable<any> {
-    return this.apiService.getTypeRequest('Get' + id);
+    return this.apiService.getTypeRequest(this.url + 'Get?id=' + id);
   }
 
   getProductsByCategory(categoryId: number): Observable<any> {
-    var data= this.apiService.getTypeRequest(`${this.url}/GetByCategoryID?categoryID=${categoryId}`);
+    var data = this.apiService.getTypeRequest(
+      `${this.url}/GetByCategoryID?categoryID=${categoryId}`
+    );
     return data;
   }
 }
