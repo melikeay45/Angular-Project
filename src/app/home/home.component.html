@@ -1,0 +1,59 @@
+<div class="container-fluid fruite py-5">
+  <div class="container py-5">
+    <div class="tab-class text-center" style="margin-top: 100px">
+      <div class="row g-4">
+        <div class="col-lg-4 text-start" style="margin-bottom: 50px">
+          <h1>{{ category }}</h1>
+        </div>
+      </div>
+      <div class="tab-content">
+        <div class="row g-4">
+          <ng-container *ngFor="let product of products; let i = index">
+            <div class="col-md-6 col-lg-4 col-xl-3">
+              <div class="rounded position-relative fruite-item">
+                <div class="fruite-img">
+                  <img
+                    src="/assets/Uploads/ProductImages/{{ product.imageURL }}"
+                    class="img-fluid w-100 rounded-top"
+                    alt="resim"
+                  />
+                </div>
+                <div
+                  class="p-4 rounded-bottom"
+                  style="
+                    border: 4px solid #a6d8ed;
+                    border-radius: 0 0 10px 10px;
+                    border-top: 0;
+                  "
+                >
+                  <h4>{{ product.productName }}</h4>
+                  <p>{{ product.productDescriptinon }}</p>
+                  <div class="d-flex justify-content-between flex-lg-wrap">
+                    <p class="text-dark fs-5 fw-bold mb-0">
+                      {{ product.price }} TL
+                    </p>
+                  </div>
+                  <div style="margin-right: -80px; margin-top: 20px">
+                    <a
+                      href="#"
+                      class="btn rounded-pill px-3 text-primary"
+                      style="
+                        border: 3px solid #a6d8ed;
+                        border-radius: 0 0 10px 10px;
+                      "
+                      ><i class="fa fa-shopping-bag me-2 text-primary"></i>
+                      Sepete ekle</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Her 5 üründen sonra yeni bir satır ekleyin -->
+            <div *ngIf="(i + 1) % 4 === 0" class="w-100"></div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

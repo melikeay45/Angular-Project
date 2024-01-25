@@ -1,11 +1,5 @@
 //ürünlerin tutulacağı modeller
 
-//eğer apiden birden fazla veri geliyorsa bu şekilde tutulur;
-export interface Products {
-  count: number;
-  products: Product[];
-}
-
 //eğer apiden bir tane veri gelirse
 export interface Product {
   productID: number;
@@ -16,4 +10,5 @@ export interface Product {
   stockQuantity: number;
   imageURL: string;
   isDelete: boolean;
+  categoryName: string;
 }

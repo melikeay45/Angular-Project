@@ -14,6 +14,7 @@ export class ApiService {
 
   //Methods
 
+
   getTypeRequest(url: string) {
     return this.http.get(`${this.baseUrl}${url}`).pipe(
       map((res) => {
