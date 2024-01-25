@@ -10,10 +10,10 @@ import { ApiService } from './api.service';
 export class ProductService {
   constructor(private http: HttpClient, private apiService: ApiService) {}
 
-  private url = 'ProductApi/;';
+  private url = 'ProductApi/';
 
-  getAllProducts(): Observable<Products> {
-    return this.http.get<Products>(this.url + 'GetAll', {});
+  getAllProducts(): Observable<any> {
+    return this.apiService.getTypeRequest(this.url + 'GetAll');
   }
 
   getSingleProduct(id: Number): Observable<any> {

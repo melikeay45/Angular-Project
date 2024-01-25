@@ -12,22 +12,14 @@ import { Products, Product } from '../../Shared/models/product.model';
 })
 export class HomePageComponent implements OnInit {
   //fields
-  products: Product[] = [];
+  products: any[] = [];
 
   //constructure
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.productService.getAllProducts().subscribe(
-        (res: any) => {
-          console.log(res);
-          this.products = res;
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    }, 500);
+    this.productService.getAllProducts().subscribe((data) => {
+      this.products = JSON.parse(data);
+    });
   }
 }

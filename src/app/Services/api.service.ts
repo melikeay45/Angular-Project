@@ -21,6 +21,7 @@ export class ApiService {
       })
     );
   }
+
   postTypeRequest(url: string, payload: any) {
     return this.http.post(`${this.baseUrl}${url}`, payload).pipe(
       map((res) => {
@@ -28,6 +29,7 @@ export class ApiService {
       })
     );
   }
+
   putTypeRequest(url: string, payload: any) {
     return this.http.put(`${this.baseUrl}${url}`, payload).pipe(
       map((res) => {
@@ -35,6 +37,7 @@ export class ApiService {
       })
     );
   }
+
   deleteTypeRequest(url: string) {
     return this.http.delete(`${this.baseUrl}${url}`).pipe(
       map((res) => {
