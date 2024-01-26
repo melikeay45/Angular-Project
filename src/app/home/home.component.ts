@@ -29,7 +29,6 @@ export class HomeComponent {
     this.route.params.subscribe((params) => {
       const id = params['id'];
       this.category = params['categoryName'];
-      console.log(params);
 
       if (id) {
         this.productService.getProductsByCategory(id).subscribe((data) => {

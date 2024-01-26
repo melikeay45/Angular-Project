@@ -13,12 +13,10 @@ export class CategoryService {
 
   getAllProducts(): Observable<any> {
     var data = this.apiService.getTypeRequest(this.url + 'GetAll');
-    console.log(data);
     return data;
   }
 
   getSingleProduct(id: Number): Observable<any> {
-    console.log(id);
     return this.apiService.getTypeRequest('Get' + id);
   }
 }

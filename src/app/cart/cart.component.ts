@@ -3,6 +3,7 @@ import { CartService } from '../Services/cart.service';
 import { ProductService } from '../Services/product.service';
 import { CommonModule } from '@angular/common';
 import { CartProductViewModel } from '../../Shared/ViewModel/cartProductViewModel';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -25,16 +26,23 @@ export class CartComponent {
       this.carts = JSON.parse(data);
       console.log(this.carts);
       this.CreateCartProduct(this.carts);
+      this.cartProductViewModel.sort((a, b) => a.cartID - b.cartID);
       console.log(this.cartProductViewModel);
     });
   }
 
-  CreateCartProduct(carts: any): void {
+  CreateCartProduct(carts: any[]): void {
+    let observables = [];
+
     for (let cart of carts) {
       let productID = cart.productID;
-      let product;
-      this.productService.getSingleProduct(productID).subscribe((data) => {
-        product = JSON.parse(data);
+      observables.push(this.productService.getSingleProduct(productID));
+    }
+
+    forkJoin(observables).subscribe((productData: any[]) => {
+      for (let i = 0; i < productData.length; i++) {
+        let product = JSON.parse(productData[i]);
+        let cart = carts[i];
         this.cartProductViewModel.push({
           cartID: cart.cartID,
           userID: cart.userID,
@@ -48,12 +56,73 @@ export class CartComponent {
           imageURL: product.imageURL,
           total: cart.price * cart.quantity,
         });
-      });
-    }
+      }
+
+      // Şimdi, tüm öğeler eklendikten sonra cartID'ye göre sıralama yapabilirsiniz
+      this.cartProductViewModel.sort((a, b) => a.cartID - b.cartID);
+    });
   }
 
+  //Sepetteki ürünü siler
   DeleteCart(id: number): void {
-    console.log('işlemburda');
-    this.cartService.deleteCart(id);
+    this.cartService.deleteCart(id).subscribe(
+      (response) => {
+        console.log('İstek başarılı:', response);
+        location.reload();
+      },
+      (error) => {
+        console.error('İstek hatası:', error);
+      }
+    );
+  }
+
+  //Quantity artırır
+  PlusQuantity(id: number): void {
+    let cart: any;
+    this.cartService.GetCartByID(id).subscribe((data) => {
+      cart = JSON.parse(data);
+      cart.quantity = cart.quantity + 1;
+      this.cartService.UpdateCartQuantity(id, cart).subscribe(
+        (response) => {
+          console.log('İstek başarılı:', response);
+          location.reload();
+        },
+        (error) => {
+          console.error('İstek hatası:', error);
+        }
+      );
+    });
+  }
+  //Quantity artırır
+  MinusQuantity(id: number): void {
+    let cart: any;
+    this.cartService.GetCartByID(id).subscribe((data) => {
+      cart = JSON.parse(data);
+      //eğer quantity 1 e eşit ise sepetten sil
+      if (cart.quantity == 1) {
+        this.cartService.deleteCart(id).subscribe(
+          (response) => {
+            console.log('İstek başarılı:', response);
+            location.reload();
+          },
+          (error) => {
+            console.error('İstek hatası:', error);
+          }
+        );
+      }
+      //eğer quantity 1 den büyükse miktarı azaltır
+      else {
+        cart.quantity = cart.quantity - 1;
+        this.cartService.UpdateCartQuantity(id, cart).subscribe(
+          (response) => {
+            console.log('İstek başarılı:', response);
+            location.reload();
+          },
+          (error) => {
+            console.error('İstek hatası:', error);
+          }
+        );
+      }
+    });
   }
 }

@@ -12,8 +12,11 @@ export class CartService {
 
   constructor(private http: HttpClient, private apiService: ApiService) {}
 
+  GetCartByID(id: Number): Observable<any> {
+    return this.apiService.getTypeRequest(this.url + 'Get?id=' + id);
+  }
+
   getProductByUserID(id: Number): Observable<any> {
-    console.log(id);
     return this.apiService.getTypeRequest(
       this.url + 'GetbyUserID?userID=' + id
     );
@@ -22,7 +25,13 @@ export class CartService {
   addCart(cart: Cart): Observable<any> {
     return this.apiService.postTypeRequest(this.url + 'Add', cart);
   }
+
   deleteCart(id: number): Observable<any> {
     return this.apiService.deleteTypeRequest(this.url + 'Delete?id=' + id);
+  }
+
+  //Sadece cart datasının quantity alanını günceller.
+  UpdateCartQuantity(id: number, cart: Cart): Observable<any> {
+    return this.apiService.putTypeRequest(this.url + 'Update?id=' + id, cart);
   }
 }
