@@ -18,6 +18,7 @@
           class="form-control"
           placeholder="Kullanıcı Adı veya Email"
           required
+          [(ngModel)]="_loginMdl.username"
         />
       </div>
       <div class="form-group">
@@ -28,10 +29,11 @@
           class="form-control"
           placeholder="Şifre"
           required
+          [(ngModel)]="_loginMdl.password"
         />
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary" (click)="login()">
           <i class="fas fa-sign-in-alt"></i> Giriş Yap
         </button>
       </div>

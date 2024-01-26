@@ -12,11 +12,11 @@ export class CartService {
 
   constructor(private http: HttpClient, private apiService: ApiService) {}
 
-  GetCartByID(id: Number): Observable<any> {
+  GetCartByID(id: number): Observable<any> {
     return this.apiService.getTypeRequest(this.url + 'Get?id=' + id);
   }
 
-  getProductByUserID(id: Number): Observable<any> {
+  getProductByUserID(id: number): Observable<any> {
     return this.apiService.getTypeRequest(
       this.url + 'GetbyUserID?userID=' + id
     );

@@ -1,5 +1,5 @@
 export interface CartProductViewModel {
-  cartID:number;
+  cartID: number;
   userID: number;
   productID: number;
   quantity: number;
@@ -9,5 +9,5 @@ export interface CartProductViewModel {
   price: number;
   stockQuantity: number;
   imageURL: string;
-  total:number;
+  total: number;
 }

@@ -6,11 +6,10 @@ import { CartProductViewModel } from '../../Shared/ViewModel/cartProductViewMode
 import { forkJoin } from 'rxjs';
 import { RouterModule } from '@angular/router';
 
-
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
@@ -89,7 +88,11 @@ export class CartComponent {
       this.cartService.UpdateCartQuantity(id, cart).subscribe(
         (response) => {
           console.log('İstek başarılı:', response);
-          location.reload();
+
+          var quantity = this.cartProductViewModel.find((x) => x.cartID == id);
+          if (quantity) {
+            quantity.quantity = quantity.quantity + 1;
+          }
         },
         (error) => {
           console.error('İstek hatası:', error);
@@ -107,7 +110,10 @@ export class CartComponent {
         this.cartService.deleteCart(id).subscribe(
           (response) => {
             console.log('İstek başarılı:', response);
-            location.reload();
+
+            this.cartProductViewModel = this.cartProductViewModel.filter(
+              (x) => x.cartID != id
+            );
           },
           (error) => {
             console.error('İstek hatası:', error);
@@ -120,7 +126,13 @@ export class CartComponent {
         this.cartService.UpdateCartQuantity(id, cart).subscribe(
           (response) => {
             console.log('İstek başarılı:', response);
-            location.reload();
+
+            var quantity = this.cartProductViewModel.find(
+              (x) => x.cartID == id
+            );
+            if (quantity) {
+              quantity.quantity = quantity.quantity - 1;
+            }
           },
           (error) => {
             console.error('İstek hatası:', error);

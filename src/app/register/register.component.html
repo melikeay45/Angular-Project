@@ -1,111 +1,67 @@
-<div class="login-container" style="margin-top: 100px">
-  <form>
-    <h2 class="text-center" style="margin-bottom: 70px">Kayıt Ol</h2>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            class="form-control"
-            placeholder="Adı"
-            required
-          />
+<div class="background-container">
+  <div class="login-container" style="margin-top: 100px">
+    <form>
+      <h2 class="text-center" style="margin-bottom: 70px">Kayıt Ol</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Adı" required />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Soyadı" required />
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            class="form-control"
-            placeholder="Soyadı"
-            required
-          />
+      <div class="row" style="margin-bottom: 20px">
+        <div class="col-md-6">
+          <div class="form-group">
+            <input type="text" id="username" name="username" class="form-control" placeholder="Kullanıcı Adı"
+              required />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required />
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row" style="margin-bottom: 20px">
-      <div class="col-md-6">
-        <div class="form-group">
-          <input
-            type="text"
-            id="username"
-            name="username"
-            class="form-control"
-            placeholder="Kullanıcı Adı"
-            required
-          />
+      <div class="row" style="margin-bottom: 20px">
+        <div class="col-md-6">
+          <div class="form-group">
+            <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Telefon Numarası"
+              required />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <input type="password" id="password" name="password" class="form-control" placeholder="Şifre" required />
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            placeholder="Email"
-            required
-          />
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
+              placeholder="Şifreyi Onayla" required />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-user-plus"></i> Kayıt Ol
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row" style="margin-bottom: 20px">
-      <div class="col-md-6">
-        <div class="form-group">
-          <input
-            type="tel"
-            id="phoneNumber"
-            name="phoneNumber"
-            class="form-control"
-            placeholder="Telefon Numarası"
-            required
-          />
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="form-control"
-            placeholder="Şifre"
-            required
-          />
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            class="form-control"
-            placeholder="Şifreyi Onayla"
-            required
-          />
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">
-            <i class="fas fa-user-plus"></i> Kayıt Ol
-          </button>
-        </div>
-      </div>
-    </div>
 
-    <div class="form-group">
-      <p>
-        Hesabın var mı?
-        <a [routerLink]="['/login']" href="#" class="signup-link">Giriş Yap</a>
-      </p>
-    </div>
-  </form>
+      <div class="form-group">
+        <p>
+          Hesabın var mı?
+          <a [routerLink]="['/login']" href="#" class="signup-link">Giriş Yap</a>
+        </p>
+      </div>
+    </form>
+  </div>
 </div>
