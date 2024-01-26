@@ -15,6 +15,7 @@ import { forkJoin } from 'rxjs';
 export class CartComponent {
   carts: any[] = [];
   cartProductViewModel: CartProductViewModel[] = [];
+  totalPayment: number = 0;
 
   constructor(
     private cartService: CartService,
@@ -56,6 +57,7 @@ export class CartComponent {
           imageURL: product.imageURL,
           total: cart.price * cart.quantity,
         });
+        this.totalPayment = this.totalPayment + cart.price * cart.quantity;
       }
 
       // Şimdi, tüm öğeler eklendikten sonra cartID'ye göre sıralama yapabilirsiniz
@@ -93,7 +95,7 @@ export class CartComponent {
       );
     });
   }
-  //Quantity artırır
+  //Quantity azaltır
   MinusQuantity(id: number): void {
     let cart: any;
     this.cartService.GetCartByID(id).subscribe((data) => {
