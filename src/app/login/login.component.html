@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-7" style="margin-top: 100px">
+    <img
+      src="/assets/img/loginimage1.jpg"
+      class="img-fluid"
+      alt="Login Page Image"
+      style="width: 100%"
+    />
+  </div>
+  <div class="col-md-5 login-container" style="margin-top: 100px">
+    <h2>Login</h2>
+    <form>
+      <div class="form-group justify-content-center">
+        <input
+          type="text"
+          id="username"
+          name="username"
+          class="form-control"
+          placeholder="Kullanıcı Adı veya Email"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="form-control"
+          placeholder="Şifre"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-sign-in-alt"></i> Giriş Yap
+        </button>
+      </div>
+      <div class="form-group">
+        <a href="#" class="forgot-password">
+          <i class="fas fa-question-circle"></i> Şifremi Unuttum
+        </a>
+      </div>
+      <div class="form-group" style="margin-left: 155px">
+        <p>
+          Hesabın yok mu?
+          <a [routerLink]="['/register']" href="#" class="signup-link"
+            >Kayıt Ol</a
+          >
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

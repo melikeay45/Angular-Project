@@ -4,11 +4,13 @@ import { ProductService } from '../Services/product.service';
 import { CommonModule } from '@angular/common';
 import { CartProductViewModel } from '../../Shared/ViewModel/cartProductViewModel';
 import { forkJoin } from 'rxjs';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })

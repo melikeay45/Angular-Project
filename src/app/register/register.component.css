@@ -1,0 +1,58 @@
+.login-container {
+  max-width: 800px;
+  margin: 0 auto; /* Sol ve sağ kenar boşluklarını otomatik olarak eşitler */
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 150px;
+  color: #a6d8ed;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-control {
+  text-align: center;
+  width: 300px;
+  border: 1px solid #a6d8ed;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  display: block;
+  background-color: #a6d8ed;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 300px;
+}
+
+.btn-primary:hover {
+  background-color: #a6d8ed;
+}
+
+.forgot-password {
+  color: #a6d8ed;
+  text-decoration: none;
+}
+
+.signup-link {
+  color: #a6d8ed;
+  text-decoration: none;
+}
+
+.forgot-password:hover,
+.signup-link:hover {
+  text-decoration: underline;
+}
