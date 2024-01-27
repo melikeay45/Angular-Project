@@ -29,7 +29,6 @@ export class CartComponent {
       console.log(this.carts);
       this.CreateCartProduct(this.carts);
       this.cartProductViewModel.sort((a, b) => a.cartID - b.cartID);
-      console.log(this.cartProductViewModel);
     });
   }
 

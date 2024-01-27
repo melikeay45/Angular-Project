@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './navbar/NavbarComponent';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 //Api istekleri için
@@ -8,11 +8,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    RouterOutlet,
-    NavbarComponent,
-    MatSnackBarModule,
-  ],
+  imports: [RouterOutlet, NavbarComponent, MatSnackBarModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
