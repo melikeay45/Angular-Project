@@ -20,7 +20,7 @@ export class CartComponent {
 
   constructor(
     private cartService: CartService,
-    private productService: ProductService
+    private productService: ProductService,
   ) {}
 
   ngOnInit(): void {
