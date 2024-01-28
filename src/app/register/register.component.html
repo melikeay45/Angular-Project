@@ -5,51 +5,103 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Adı" required />
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              class="form-control"
+              placeholder="Adı"
+              required
+              [(ngModel)]="user.name"
+            />
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Soyadı" required />
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              class="form-control"
+              placeholder="Soyadı"
+              required
+              [(ngModel)]="user.surname"
+            />
           </div>
         </div>
       </div>
       <div class="row" style="margin-bottom: 20px">
         <div class="col-md-6">
           <div class="form-group">
-            <input type="text" id="username" name="username" class="form-control" placeholder="Kullanıcı Adı"
-              required />
+            <input
+              type="text"
+              id="username"
+              name="username"
+              class="form-control"
+              placeholder="Kullanıcı Adı"
+              required
+              [(ngModel)]="user.username"
+            />
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-control"
+              placeholder="Email"
+              required
+              [(ngModel)]="user.email"
+            />
           </div>
         </div>
       </div>
       <div class="row" style="margin-bottom: 20px">
         <div class="col-md-6">
           <div class="form-group">
-            <input type="tel" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Telefon Numarası"
-              required />
+            <input
+              type="tel"
+              id="phoneNumber"
+              name="phoneNumber"
+              class="form-control"
+              placeholder="Telefon Numarası"
+              required
+              [(ngModel)]="user.phoneNumber"
+            />
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <input type="password" id="password" name="password" class="form-control" placeholder="Şifre" required />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Şifre"
+              required
+              [(ngModel)]="user.password"
+            />
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
-              placeholder="Şifreyi Onayla" required />
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              class="form-control"
+              placeholder="Şifreyi Onayla"
+              required
+            />
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <button type="submit" class="btn btn-primary">
+            <button (click)="SignUp()" type="submit" class="btn btn-primary">
               <i class="fas fa-user-plus"></i> Kayıt Ol
             </button>
           </div>
@@ -59,7 +111,9 @@
       <div class="form-group">
         <p>
           Hesabın var mı?
-          <a [routerLink]="['/login']" href="#" class="signup-link">Giriş Yap</a>
+          <a [routerLink]="['/login']" href="#" class="signup-link"
+            >Giriş Yap</a
+          >
         </p>
       </div>
     </form>
