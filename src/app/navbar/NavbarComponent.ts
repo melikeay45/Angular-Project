@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { CartService } from '../Services/cart.service';
 import { AuthService } from '../Services/auth.service';
 import { interval } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -16,10 +17,11 @@ import { interval } from 'rxjs';
 export class NavbarComponent {
   categories: any[] = [];
   carts: any[] = [];
-  productCount: number = 10;
+  productCount: number = 0;
   isLogged: boolean = false;
   isDropdownOpen: boolean = false;
   userType: boolean = false;
+  private cartUpdateSubscription: Subscription = new Subscription();
 
   constructor(
     private categoryService: CategoryService,
@@ -40,7 +42,13 @@ export class NavbarComponent {
     this.categoryService.getAllProducts().subscribe((data) => {
       this.categories = JSON.parse(data);
     });
-    this.GetProductCount(1);
+    this.GetProductCount();
+    this.cartUpdateSubscription = this.cartService
+      .getCartUpdate()
+      .subscribe(() => {
+        this.productCount = 0;
+        this.GetProductCount();
+      });
 
     interval(50).subscribe(() => {
       if (localStorage.getItem('token')) {
@@ -50,20 +58,21 @@ export class NavbarComponent {
       }
     });
   }
-  ngAfterViewInit(): void {
-    this.isLogged = this.authService.isLoggedIn();
-    //this.userType = this.authService.decodeToken.userType;
+  ngOnDestroy(): void {
+    this.cartUpdateSubscription.unsubscribe();
   }
 
-  public GetProductCount(id: number): void {
-    this.cartService.getProductByUserID(id).subscribe((data) => {
+  public GetProductCount(): void {
+    this.cartService.getProductByUserID().subscribe((data) => {
       this.carts = JSON.parse(data);
-      this.productCount = this.carts.length;
+      for (let cart of this.carts) {
+        this.productCount = this.productCount + cart.quantity;
+      }
     });
   }
 
   logout() {
     localStorage.removeItem('token');
-    this.router.navigate(['login']);
+    this.router.navigate(['']);
   }
 }

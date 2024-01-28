@@ -47,7 +47,7 @@ export class HomeComponent {
 
   AddCart(productID: number, price: number): void {
     const myCart: Cart = {
-      userID: 1,
+      userID: 0,
       productID: productID,
       quantity: 1,
       price: price,

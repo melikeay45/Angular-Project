@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { CartProductViewModel } from '../../Shared/ViewModel/cartProductViewModel';
 import { forkJoin } from 'rxjs';
 import { RouterModule } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -21,12 +22,12 @@ export class CartComponent {
   constructor(
     private cartService: CartService,
     private productService: ProductService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.cartService.getProductByUserID(1).subscribe((data) => {
+    this.cartService.getProductByUserID().subscribe((data) => {
       this.carts = JSON.parse(data);
-      console.log(this.carts);
       this.CreateCartProduct(this.carts);
       this.cartProductViewModel.sort((a, b) => a.cartID - b.cartID);
     });
