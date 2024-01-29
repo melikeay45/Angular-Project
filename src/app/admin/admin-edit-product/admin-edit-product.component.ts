@@ -91,7 +91,6 @@ export class AdminEditProductComponent {
 
     this.productService.updateProduct(formData).subscribe(
       (response) => {
-        console.log('Ürün başarıyla güncellendi.', response);
         location.reload();
       },
       (error) => {
@@ -114,7 +113,6 @@ export class AdminEditProductComponent {
     _formData.append('categoryID', category.categoryID.toString());
     this.productService.addProduct(_formData).subscribe(
       (response) => {
-        console.log('Ürün başarıyla yüklendi.', response);
         location.reload();
       },
       (error) => {
@@ -134,5 +132,15 @@ export class AdminEditProductComponent {
       const target = event.target as HTMLSelectElement;
       this.selectedCategory = target.value;
     }
+  }
+  deleteProduct(productID:number){
+    this.productService.deleteProduct(productID).subscribe(
+      (response) => {
+        location.reload();
+      },
+      (error) => {
+        console.error('Bir hata oluştu.', error);
+      }
+    );
   }
 }

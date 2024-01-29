@@ -29,22 +29,15 @@ export class ProductService {
     );
     return data;
   }
-
-  uploadProductPicture(productId: number, file: File): Observable<any> {
-    console.log(file);
-    var data = this.apiService.postTypeRequest(
-      `${this.url}UploadPicture=${productId}`,
-      file
-    );
-    console.log(data);
-    return data;
-  }
-
   updateProduct(productData: any): Observable<any> {
     return this.http.post(this.APIAddress + 'ProductApi/Update', productData);
   }
 
   addProduct(productData: any): Observable<any> {
     return this.http.post(this.APIAddress + 'ProductApi/Add', productData);
+  }
+
+  deleteProduct(productID:number):Observable<any>{
+    return this.http.delete(this.APIAddress+'ProductApi/Delete?id='+productID);
   }
 }
