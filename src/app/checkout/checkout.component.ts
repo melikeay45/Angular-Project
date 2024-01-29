@@ -82,6 +82,8 @@ export class CheckoutComponent {
   }
 
   PlaceOrder(): void {
+    let orders: Order[] = [];
+  
     for (let product of this.cartProductViewModel) {
       let _order: Order = {
         userID: 0,
@@ -92,16 +94,29 @@ export class CheckoutComponent {
         unitPrice: product.price,
         orderDate: new Date(),
         orderStatus: 'Sipariş oluşturuldu',
-        totalAmount: this.order.unitPrice * this.order.quantity,
+        totalAmount: product.price * product.quantity, // Tekil ürünün toplam fiyatını hesaplayın
       };
-      this.orderService.AddOrder(_order).subscribe(
-        (response) => {
-          console.log('İstek başarılı:', response);
-        },
-        (error) => {
-          console.error('İstek hatası:', error);
-        }
-      );
+      orders.push(_order); // Her siparişi listeye ekleyin
     }
+  
+    this.orderService.AddOrder(orders).subscribe(
+      (response) => {
+        console.log('İstek başarılı:', response);
+        
+      },
+      (error) => {
+        console.error('İstek hatası:', error);
+      }
+    );
+
+    this.cartService.DeleteAllCart().subscribe(
+      (deleteResponse) => {
+        console.log('Sepet başarıyla temizlendi:', deleteResponse);
+      },
+      (deleteError) => {
+        console.error('Sepet temizleme hatası:', deleteError);
+      }
+    );
   }
+  
 }

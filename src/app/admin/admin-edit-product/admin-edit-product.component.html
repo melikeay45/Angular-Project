@@ -1,0 +1,277 @@
+<div class="container-fluid fruite py-5" style="margin-top: -100px">
+  <div class="container py-5">
+    <div class="tab-class text-center" style="margin-top: 100px">
+      <div class="row g-4">
+        <div class="col-lg-4 text-start" style="margin-bottom: 50px">
+          <h1 style="color: #a6d8ed"><strong>Ürünler</strong></h1>
+        </div>
+        <div class="col-lg-8 text-end">
+          <ul class="nav nav-pills d-inline-flex text-center mb-5">
+            <li class="nav-item">
+              <a
+                class="d-flex m-2 py-2 rounded-pill btn btn-light"
+                data-bs-toggle="modal"
+                data-bs-target="#productAddModal"
+                (click)="openAddModal()"
+                style="cursor: pointer; background-color: #a6d8ed"
+              >
+                <span style="width: 130px; color: white; font-size: large"
+                  ><strong>Ürün Ekle</strong></span
+                >
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="tab-content">
+        <div class="row g-4">
+          <ng-container *ngFor="let product of products; let i = index">
+            <div class="col-md-6 col-lg-4 col-xl-3">
+              <div class="rounded position-relative fruite-item">
+                <div class="fruite-img">
+                  <img
+                    src="{{
+                      APIAddress.replace('Api/', '') + product.imageURL
+                    }}"
+                    class="img-fluid w-100 rounded-top"
+                    alt="resim"
+                  />
+                </div>
+                <div
+                  class="p-4 rounded-bottom"
+                  style="
+                    border: 4px solid #a6d8ed;
+                    border-radius: 0 0 10px 10px;
+                    border-top: 0;
+                  "
+                >
+                  <h4>{{ product.productName }}</h4>
+                  <p>{{ product.productDescriptinon }}</p>
+                  <div class="d-flex justify-content-between flex-lg-wrap">
+                    <p class="text-dark fs-5 fw-bold mb-0">
+                      {{ product.price }} TL
+                    </p>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-5" style="margin-top: 20px">
+                      <a
+                        class="btn rounded-pill px-3 text-primary"
+                        style="
+                          border: 3px solid #a6d8ed;
+                          border-radius: 0 0 10px 10px;
+                        "
+                      >
+                        <i class="fa fa-shopping-bag me-2 text-primary"></i> Sil
+                      </a>
+                    </div>
+                    <div class="col-md-7" style="margin-top: 20px">
+                      <a
+                        class="btn rounded-pill px-3 text-primary"
+                        style="
+                          border: 3px solid #a6d8ed;
+                          border-radius: 0 0 10px 10px;
+                        "
+                        (click)="openModal(product.productID)"
+                        data-bs-toggle="modal"
+                        data-bs-target="#productUpdateModal"
+                      >
+                        <i class="fa fa-shopping-bag me-2 text-primary"></i>
+                        Güncelle
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Her 5 üründen sonra yeni bir satır ekleyin -->
+            <div *ngIf="(i + 1) % 4 === 0" class="w-100"></div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Product Update Modal -->
+<div
+  class="modal fade"
+  id="productUpdateModal"
+  tabindex="-1"
+  aria-labelledby="productUpdateModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="productUpdateModalLabel">Ürünü Güncelle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Güncelleme formu -->
+        <form>
+          <div class="mb-3">
+            <label for="productImg" class="form-label">Ürün Resmi</label>
+            <input
+              type="file"
+              class="form-control"
+              name="file"
+              (change)="onFileSelected($event)"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="productName" class="form-label">Ürün Adı</label>
+            <input
+              type="text"
+              class="form-control"
+              id="productName"
+              name="productName"
+              [(ngModel)]="selectedProduct.productName"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="productDescription" class="form-label"
+              >Ürün Açıklaması</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="productDescription"
+              name="productDescription"
+              [(ngModel)]="selectedProduct.productDescriptinon"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="productPrice" class="form-label">Ürün Fiyatı</label>
+            <input
+              type="text"
+              class="form-control"
+              id="productPrice"
+              name="productPrice"
+              [(ngModel)]="selectedProduct.price"
+            />
+          </div>
+          <!-- Diğer form alanları buraya eklenebilir -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Kapat
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()">
+          Kaydet
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Product Add Modal -->
+<div
+  class="modal fade"
+  id="productAddModal"
+  tabindex="-1"
+  aria-labelledby="productAddModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="productAddModalLabel">Ürün Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Ekleme formu -->
+        <form>
+          <div class="mb-3">
+            <label for="productImg" class="form-label">Ürün Resmi</label>
+            <input
+              type="file"
+              class="form-control"
+              name="file"
+              (change)="onFileSelected($event)"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="productName" class="form-label">Ürün Adı</label>
+            <input
+              type="text"
+              class="form-control"
+              id="productName"
+              name="productName"
+              [(ngModel)]="addProduct.productName"
+            />
+          </div>
+          <div class="mb-3">
+            <label
+              for="productDescription"
+              class="form-label"
+              name="productDescription"
+              >Ürün Açıklaması</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="productDescription"
+              name="productDescription"
+              [(ngModel)]="addProduct.productDescriptinon"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="productPrice" class="form-label">Ürün Fiyatı</label>
+            <input
+              type="text"
+              class="form-control"
+              id="productPrice"
+              name="productPrice"
+              [(ngModel)]="addProduct.price"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="productCategory" class="form-label">Kategorisi</label>
+            <select
+              class="form-select"
+              id="productCategory"
+              name="productCategory"
+              [(ngModel)]="selectedCategory"
+              (change)="onSelectCategory($event)"
+            >
+              <option value="" disabled selected>Seçiniz</option>
+              <option
+                *ngFor="let category of categories"
+                [value]="category.categoryName"
+              >
+                {{ category.categoryName }}
+              </option>
+            </select>
+          </div>
+
+          <!-- Diğer form alanları buraya eklenebilir -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Kapat
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="onAddProductSubmit()"
+          data-bs-dismiss="modal"
+        >
+          Kaydet
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

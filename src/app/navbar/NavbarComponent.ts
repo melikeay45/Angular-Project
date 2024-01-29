@@ -19,6 +19,7 @@ export class NavbarComponent {
   carts: any[] = [];
   productCount: number = 0;
   isLogged: boolean = false;
+  isAdmin: boolean = false;
   isDropdownOpen: boolean = false;
   userType: boolean = false;
   private cartUpdateSubscription: Subscription = new Subscription();
@@ -53,7 +54,11 @@ export class NavbarComponent {
     interval(50).subscribe(() => {
       if (localStorage.getItem('token')) {
         this.isLogged = true;
+        if (localStorage.getItem('type') == 'admin') {
+          this.isAdmin = true;
+        }
       } else {
+        this.isAdmin = false;
         this.isLogged = false;
       }
     });
@@ -73,6 +78,7 @@ export class NavbarComponent {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('type');
     this.router.navigate(['']);
   }
 }

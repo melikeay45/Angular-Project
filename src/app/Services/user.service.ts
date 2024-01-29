@@ -17,6 +17,7 @@ export class UserService {
   getUserByUserID(): Observable<ApiResult<string>> {
     return this.http.get<ApiResult<string>>(this.APIAddress + 'Get');
   }
+  
   AddUser(user: any): Observable<any> {
     return this.apiService.postTypeRequest('UserApi/Add', user);
   }

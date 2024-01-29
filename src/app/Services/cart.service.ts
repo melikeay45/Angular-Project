@@ -37,9 +37,11 @@ export class CartService {
     return this.cartUpdateSubject.asObservable();
   }
 
-  // addCart(cart: Cart): Observable<any> {
-  //   return this.apiService.postTypeRequest(this.url + 'Add', cart);
-  // }
+  DeleteAllCart(): Observable<any> {
+    return this.apiService
+      .deleteTypeRequest(this.url + 'DeleteAll')
+      .pipe(tap(() => this.cartUpdateSubject.next()));
+  }
 
   deleteCart(id: number): Observable<any> {
     return this.apiService.deleteTypeRequest(this.url + 'Delete?id=' + id);
@@ -49,5 +51,4 @@ export class CartService {
   UpdateCartQuantity(id: number, cart: Cart): Observable<any> {
     return this.apiService.putTypeRequest(this.url + 'Update?id=' + id, cart);
   }
-
 }

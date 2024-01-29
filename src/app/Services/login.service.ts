@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiResult } from '../../Shared/models/system.model';
 import { environment } from '../../environments/environment';
-import { loginModel } from '../../Shared/models/login.model';
+import { loginModel, returnLogin } from '../../Shared/models/login.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +13,8 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}
 
-  login(loginModel: loginModel): Observable<ApiResult<string>> {
-    return this.http.post<ApiResult<string>>(
+  login(loginModel: loginModel): Observable<ApiResult<returnLogin>> {
+    return this.http.post<ApiResult<returnLogin>>(
       `${this.APIAddress}LoginApi/login`,
       loginModel
     );

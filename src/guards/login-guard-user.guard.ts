@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginGuard {
+export class LoginUserGuard {
   constructor(private router: Router) {}
 
   canActivate(
@@ -24,9 +24,13 @@ export class LoginGuard {
     | boolean
     | UrlTree {
     if (localStorage.getItem('token')) {
-      return true;
+      if (localStorage.getItem('type') == 'user') {
+        return true;
+      }
+      this.router.navigate(['']);
+      return false;
     } else {
-      this.router.navigate(['login']);
+      this.router.navigate(['']);
       return false;
     }
   }

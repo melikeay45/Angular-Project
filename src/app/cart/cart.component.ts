@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CartService } from '../Services/cart.service';
 import { ProductService } from '../Services/product.service';
+import { OrderService } from '../Services/order.service';
 import { CommonModule } from '@angular/common';
 import { CartProductViewModel } from '../../Shared/ViewModel/cartProductViewModel';
 import { forkJoin } from 'rxjs';
@@ -22,6 +23,7 @@ export class CartComponent {
   constructor(
     private cartService: CartService,
     private productService: ProductService,
+    private orderService: OrderService,
     private router: Router
   ) {}
 

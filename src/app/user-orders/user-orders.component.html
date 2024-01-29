@@ -1,1 +1,60 @@
-<p>user-orders works!</p>
+<div class="container-fluid py-5" style="margin-top: 150px">
+  <h1 class="text-center display-6" style="color: #a6d8ed">
+    <strong><STRONG>SİPARİŞLERİM</STRONG></strong>
+  </h1>
+  <div class="container py-5">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Ürünler</th>
+            <th scope="col">Ürün İsmi</th>
+            <th scope="col">Birim Fiyatı</th>
+            <th scope="col">Adeti</th>
+            <th scope="col">Toplam</th>
+            <th scope="col">Sipariş Tarihi</th>
+            <th scope="col">Sipariş Adresi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container
+            *ngFor="let order of orderProductViewModel; let i = index"
+          >
+            <tr>
+              <th scope="row">
+                <div class="d-flex align-items-center">
+                  <img
+                    src="/assets/Uploads/ProductImages/{{ order.imageURL }}"
+                    class="img-fluid me-5 rounded-circle"
+                    style="width: 80px; height: 80px"
+                    alt=""
+                  />
+                </div>
+              </th>
+              <td>
+                <p class="mb-0 mt-4">{{ order.productName }}</p>
+              </td>
+              <td>
+                <p class="mb-0 mt-4">{{ order.price }}</p>
+              </td>
+              <td>
+                <p class="mb-0 mt-4">{{ order.quantity }}</p>
+              </td>
+              <td>
+                <p class="mb-0 mt-4">{{ order.total }}</p>
+              </td>
+              <td>
+                <p class="mb-0 mt-4">{{ order.orderDate }}</p>
+              </td>
+              <td>
+                <p class="mb-0 mt-4">{{ order.address }}</p>
+              </td>
+
+              >
+            </tr></ng-container
+          >
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,9 @@
 <!-- Navbar start -->
-<div class="container-fluid fixed-top" style="background-color: #a6d8ed">
+<div
+  class="container-fluid fixed-top"
+  style="background-color: #a6d8ed"
+  *ngIf="!isAdmin"
+>
   <div class="container px-0">
     <nav class="navbar navbar-light navbar-expand-xl">
       <a href="index.html" class="navbar-brand"
@@ -63,11 +67,13 @@
 
               <ng-template #loggedInMenu>
                 <!-- Kullanıcı giriş yapmışsa -->
-                <li><a class="dropdown-item">Siparişlerim</a></li>
                 <li>
-                  <a class="dropdown-item" (click)="logout()"
-                    >Çıkış Yap</a
+                  <a class="dropdown-item" [routerLink]="['/user-orders']"
+                    >Siparişlerim</a
                   >
+                </li>
+                <li>
+                  <a class="dropdown-item" (click)="logout()">Çıkış Yap</a>
                 </li>
               </ng-template>
             </ul>
@@ -98,4 +104,51 @@
     </div>
   </div>
 </div>
-<!-- Navbar End -->
+
+<nav
+  class="navbar navbar-expand-lg navbar-light"
+  style="background-color: #a6d8ed"
+  *ngIf="isAdmin"
+>
+  <div class="container-fluid">
+    <a
+      class="navbar-brand"
+      href="#"
+      style="color: white; margin-left: 100px; font-size: xx-large"
+      ><strong>ADMİN PAGE</strong></a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarAdminContent"
+      aria-controls="navbarAdminContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarAdminContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 " >
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Ürünler</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Kategoriler</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Siparişler</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <button
+          class="btn btn-outline-primary"
+          type="submit"
+          (click)="logout()"
+        >
+          Çıkış Yap
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

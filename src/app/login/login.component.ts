@@ -28,9 +28,11 @@ export class LoginComponent {
     this.loginservice.login(this._loginMdl).subscribe(
       (res) => {
         if (res.success) {
-          localStorage.setItem('token', res.data);
+          localStorage.setItem('token', res.data.token);
+          localStorage.setItem('type', res.data.userType);
+
           this.router.navigate(['/']);
-        }  else{
+        } else {
           alert(res.message);
         }
       },
