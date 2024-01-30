@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { ProductService } from '../Services/product.service';
-import { CategoryService } from '../Services/category.service';
 import { CartService } from '../Services/cart.service';
 import { CommonModule } from '@angular/common';
 import { Cart } from '../../Shared/models/cart.model';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +17,8 @@ export class HomeComponent {
   //fields
   products: any[] = [];
   category: string = 'Tüm Ürünler';
+  readonly APIAddress = environment.APIAddress.replace('/api/', '/MainFile/');
+
 
   //constructure
   constructor(

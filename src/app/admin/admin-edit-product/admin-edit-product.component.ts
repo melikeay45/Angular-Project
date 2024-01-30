@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../Services/product.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ModalComponent } from '../../modal/modal.component';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { FormsModule } from '@angular/forms';

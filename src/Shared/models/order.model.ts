@@ -1,4 +1,5 @@
 export interface Order {
+  orderID:number;
   userID: number;
   totalAmount: number;
   orderDate: Date;
@@ -8,4 +9,5 @@ export interface Order {
   quantity: number;
   productID: number;
   unitPrice: number;
+  isDelete:boolean;
 }

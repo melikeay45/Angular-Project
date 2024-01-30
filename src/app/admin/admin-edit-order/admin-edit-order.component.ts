@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from '../../Services/user.service';
 import { OrderService } from './../../Services/order.service';
 import { ProductService } from '../../Services/product.service';
+import { OrderViewModel } from '../../../Shared/ViewModel/orderViewModel';
+import { forkJoin } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-admin-edit-order',
@@ -29,6 +32,14 @@ export class AdminEditOrderComponent {
   products: any[] = [];
   users: any[] = [];
   selectedStatus: any;
+  orderViewModelList: OrderViewModel[] = [];
+  readonly APIAddress = environment.APIAddress.replace('/api/', '/MainFile/');
+  orderStatus: string[] = [
+    'siparişiniz alındı.',
+    'Siparişiniz hazırlanıyor.',
+    'Siparişiniz kargoya verildi.',
+    'Siparişiniz teslim edildi.',
+  ];
 
   constructor(
     private userService: UserService,
@@ -37,39 +48,55 @@ export class AdminEditOrderComponent {
   ) {}
 
   ngOnInit(): void {
-    this.orderService.GetAllOrder().subscribe((data) => {
-      this.orders = JSON.parse(data);
-      console.log(this.orders);
-    });
+    forkJoin({
+      orders: this.orderService.GetAllOrder(),
+      products: this.productService.getAllProducts(),
+      users: this.userService.GetAllUser(),
+    }).subscribe((data) => {
+      this.orders = JSON.parse(data.orders);
+      this.products = JSON.parse(data.products);
+      this.users = JSON.parse(data.users);
 
-    this.productService.getAllProducts().subscribe((data) => {
-      this.products = JSON.parse(data);
-      console.log(this.products);
-    });
+      this.orders.forEach((order) => {
+        let product = this.products.find(
+          (p) => p.productID === order.productID
+        );
+        let user = this.users.find((u) => u.userID === order.userID);
 
-    this.userService.GetAllUser().subscribe((data) => {
-      this.users = JSON.parse(data);
-      console.log(this.users);
-    });
+        if (product && user) {
+          const orderViewModel: OrderViewModel = {
+            orderID:order.orderID,
+            productName: product.productName,
+            imageURL: product.imageURL,
+            userName: user.username,
+            phoneNumber: user.phoneNumber,
+            address: order.address,
+            orderStatus: order.orderStatus,
+            quantity: order.quantity,
+          };
 
-    const orderViewModelList = this.orders.map((order) => {
-      const product = this.products.find(
-        (p) => p.productID === order.productID
-      );
-      const user = this.users.find((u) => u.userID === order.userID);
-
-      return {
-        productName: product ? product.productName : '',
-        imageURL: product ? product.imageURL : '',
-        userName: user ? user.username : '',
-        phoneNumber: user ? user.phoneNumber : 0,
-        address: user ? user.address : '',
-        orderStatus: order.orderStatus || '',
-        quantity: order.quantity || 0,
-      };
+          this.orderViewModelList.push(orderViewModel);
+        }
+      });
     });
-    this.modelView = orderViewModelList;
+    console.log(this.orderViewModelList);
   }
 
-  onSelectStatus(event: Event) {}
+  onSelectStatus(event: Event,orderID:number) {
+    let _order=this.orders.find((x)=>x.orderID==orderID);
+     
+    if (event && event.target) {
+      const target = event.target as HTMLSelectElement;
+      _order.orderStatus = target.value;
+    }
+    this.orderService.updateOrder(_order.orderID,_order).subscribe(
+      (response) => {
+        location.reload();
+      },
+      (error) => {
+        console.error('Bir hata oluştu.', error);
+      }
+    );
+  }
+
 }

@@ -8,6 +8,7 @@ import { forkJoin } from 'rxjs';
 import { Order } from '../../Shared/models/order.model';
 import { FormsModule } from '@angular/forms';
 import { OrderService } from '../Services/order.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-checkout',
@@ -17,6 +18,10 @@ import { OrderService } from '../Services/order.service';
   styleUrl: './checkout.component.css',
 })
 export class CheckoutComponent {
+
+  readonly APIAddress = environment.APIAddress.replace('/api/', '/MainFile/');
+
+
   constructor(
     private router: ActivatedRoute,
     private cartService: CartService,
@@ -28,6 +33,7 @@ export class CheckoutComponent {
   carts: any[] = [];
   totalPayment: number = 0;
   order: Order = {
+    orderID:0,
     productID: 0,
     userID: 0,
     totalAmount: 0,
@@ -37,6 +43,7 @@ export class CheckoutComponent {
     address: '',
     quantity: 0,
     unitPrice: 0,
+    isDelete:false
   };
 
   ngOnInit(): void {
@@ -85,6 +92,7 @@ export class CheckoutComponent {
   
     for (let product of this.cartProductViewModel) {
       let _order: Order = {
+        orderID:0,
         userID: 0,
         address: this.order.address,
         phoneNumber: this.order.phoneNumber,
@@ -94,6 +102,7 @@ export class CheckoutComponent {
         orderDate: new Date(),
         orderStatus: 'Sipariş oluşturuldu',
         totalAmount: product.price * product.quantity, // Tekil ürünün toplam fiyatını hesaplayın
+        isDelete:false
       };
       orders.push(_order); // Her siparişi listeye ekleyin
     }

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProductService } from '../Services/product.service';
 import { forkJoin } from 'rxjs';
 import { CartService } from '../Services/cart.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-user-orders',
@@ -15,6 +16,8 @@ import { CartService } from '../Services/cart.service';
 export class UserOrdersComponent {
   orders: any[] = [];
   orderProductViewModel: any[] = [];
+  readonly APIAddress = environment.APIAddress.replace('/api/', '/MainFile/');
+
 
   constructor(
     private orderService: OrderService,

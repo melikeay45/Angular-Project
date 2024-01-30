@@ -10,53 +10,75 @@
           <tr>
             <th scope="col">Ürün</th>
             <th scope="col">Ürün Adı</th>
+            <th scope="col">Sipariş Adedi</th>
             <th scope="col">Sipariş Sahibi Kullanıcıadı</th>
             <th scope="col">Sipariş Sahibi Telefonu</th>
-            <th scope="col">Sipariş Adedi</th>
             <th scope="col">Adress</th>
             <th scope="col">Sipariş Durumu</th>
           </tr>
         </thead>
         <tbody>
-          <ng-container *ngFor="let order of modelView; let i = index">
-            <tr>
-              <td>
-                <p class="mb-0 mt-4">{{ order.categoryName }}</p>
+          <ng-container *ngFor="let order of orderViewModelList; let i = index">
+            <tr style="text-align: center">
+              <td scope="row">
+                <div class="d-flex align-items-center">
+                  <img
+                    src="{{ APIAddress.replace('Api/', '') + order.imageURL }}"
+                    class="img-fluid me-5 rounded-circle"
+                    style="width: 80px; height: 80px"
+                    alt=""
+                  />
+                </div>
               </td>
               <td>
-                <p class="mb-0 mt-4">{{ order.description }}</p>
+                <p class="mb-0 mt-4">{{ order.productName }}</p>
               </td>
               <td>
-                <p class="mb-0 mt-4">{{ order.description }}</p>
+                <p class="mb-0 mt-4">{{ order.quantity }}</p>
               </td>
               <td>
-                <p class="mb-0 mt-4">{{ order.description }}</p>
+                <p class="mb-0 mt-4">{{ order.userName }}</p>
               </td>
               <td>
-                <p class="mb-0 mt-4">{{ order.description }}</p>
+                <p class="mb-0 mt-4">{{ order.phoneNumber }}</p>
               </td>
               <td>
-                <p class="mb-0 mt-4">{{ order.description }}</p>
+                <p class="mb-0 mt-4">{{ order.address }}</p>
               </td>
               <td>
-                <div class="mb-3">
+                <div class="mb-3" style="margin-top: 20px; ">
                   <select
                     class="form-select"
-                    id="productCategory"
-                    name="productCategory"
-                    [(ngModel)]="selectedStatus"
-                    (change)="onSelectStatus($event)"
+                    id="orderStatus"
+                    name="orderStatus"
+                    [(ngModel)]="order.orderStatus"
+                    (change)="onSelectStatus($event, order.orderID)"
                   >
-                    <option value="" disabled selected>Seçiniz</option>
-                    <option [value]="order.orderStatus">
-                      Siparişiniz alındı.
+                    <option value="{{ order.orderStatus }}" disabled selected>
+                      {{ order.orderStatus }}
                     </option>
-                    <option>Siparişiniz hazırlanıyor.</option>
-                    <option>Siparişiniz kargoya verildi.</option>
-                    <option>Siparişiniz teslim edildi.</option>
+                    <option *ngFor="let status of orderStatus" [value]="status">
+                      {{ status }}
+                    </option>
                   </select>
                 </div>
               </td>
+
+              <!-- <td>
+                  <div class="col-md-7" style="margin-top: 20px">
+                    <a
+                      class="btn rounded-pill px-3 text-primary"
+                      style="
+                        border: 3px solid #a6d8ed;
+                        border-radius: 0 0 10px 10px;
+                      "
+                      (click)="updateOrder(order.orderID)"
+                    >
+                      <i class="fa-solid fa-spinner me-2 text-primary"></i>
+                      Güncelle
+                    </a>
+                  </div>
+              </td> -->
             </tr></ng-container
           >
         </tbody>

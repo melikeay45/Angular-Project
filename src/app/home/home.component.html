@@ -13,7 +13,7 @@
               <div class="rounded position-relative fruite-item">
                 <div class="fruite-img">
                   <img
-                    src="/assets/Uploads/ProductImages/{{ product.imageURL }}"
+                    src="{{ APIAddress.replace('Api/', '') + product.imageURL }}"
                     class="img-fluid w-100 rounded-top"
                     alt="resim"
                   />

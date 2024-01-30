@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Component } from '@angular/core';
 import { CartService } from '../Services/cart.service';
 import { ProductService } from '../Services/product.service';
@@ -19,6 +20,8 @@ export class CartComponent {
   carts: any[] = [];
   cartProductViewModel: CartProductViewModel[] = [];
   totalPayment: number = 0;
+  readonly APIAddress = environment.APIAddress.replace('/api/', '/MainFile/');
+
 
   constructor(
     private cartService: CartService,

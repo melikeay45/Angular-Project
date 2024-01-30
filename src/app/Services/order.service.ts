@@ -14,6 +14,7 @@ import { Subject } from 'rxjs';
 export class OrderService {
   private cartClearSubject = new Subject<void>();
   readonly APIAddress = environment.APIAddress + 'OrderApi/';
+  private url = 'OrderApi/';
 
   constructor(private http: HttpClient, private apiService: ApiService) {}
 
@@ -34,12 +35,19 @@ export class OrderService {
   //   return this.cartClearSubject.asObservable();
   // }
 
-  GetAllOrder():Observable<any>{
-  return this.apiService.getTypeRequest('OrderApi/GetAll');
+  GetAllOrder(): Observable<any> {
+    return this.apiService.getTypeRequest('OrderApi/GetAll');
   }
 
   //Kullanıcı id sine göre siparişleri getirir
   GetOrderByUserID(): Observable<any> {
     return this.apiService.getTypeRequest('OrderApi/' + 'GetOrdersByUserID');
+  }
+
+  updateOrder(orderID: number, orderData: any): Observable<any> {
+    return this.apiService.putTypeRequest(
+      this.url + '/Update?id=' + orderID,
+      orderData
+    );
   }
 }

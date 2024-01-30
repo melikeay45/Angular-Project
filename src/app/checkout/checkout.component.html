@@ -76,9 +76,7 @@
                     <th scope="row">
                       <div class="d-flex align-items-center mt-2">
                         <img
-                          src="/assets/Uploads/ProductImages/{{
-                            product.imageURL
-                          }}"
+                          src="{{ APIAddress.replace('Api/', '') + product.imageURL }}"
                           class="img-fluid rounded-circle"
                           style="width: 90px; height: 90px"
                           alt=""
