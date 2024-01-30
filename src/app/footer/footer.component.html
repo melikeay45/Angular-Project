@@ -1,1 +1,72 @@
-<p>footer works!</p>
+<!-- Footer Start -->
+<div
+  class="container-fluid text-white-50 footer pt-5 mt-5"
+  style="background-color: #a6d8ed"
+>
+  <div class="container py-5">
+    <div class="pb-4 mb-4" style="border-bottom: 1px solid #ffffff">
+      <div class="row g-4">
+        <div class="col-lg-3">
+          <div>
+            <h1 class="text-light mb-0">Healthy Beauty</h1>
+            <p class="text-light mb-0">Clean Product</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row g-5">
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-item">
+          <h4 class="text-light mb-3">Neden biz?</h4>
+          <p class="mb-4 text-primary">Geniş Ürün Yelpazesi</p>
+          <p class="mb-4 text-primary">Kaliteli Ürünler</p>
+          <p class="mb-4 text-primary">Güvenli Alışveriş Deneyimi</p>
+          <p class="mb-4 text-primary">Hızlı ve Güvenilir Teslimat</p>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" *ngIf="type!='admin'&&login">
+        <div class="d-flex flex-column text-start footer-item">
+          <h4 class="text-light mb-3">Healthy Beauty</h4>
+          <a class="btn-link text-primary" routerLink="">Anasayfa</a>
+          <a class="btn-link text-primary" routerLink="/shopping-card"
+            >Sepetim</a
+          >
+          <a class="btn-link text-primary" routerLink="/checkout">Checkout</a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6" *ngIf="!login">
+        <div class="d-flex flex-column text-start footer-item">
+          <h4 class="text-light mb-3">Hesap</h4>
+          <a class="btn-link text-primary" routerLink="/login">Login</a>
+          <a class="btn-link text-primary" routerLink="/register">Register</a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-item" >
+          <h4 class="text-light mb-3">Contact</h4>
+          <p class="text-primary">Address: Mimar Sinan Mahallesi</p>
+          <p class="text-primary">{{ mail }}</p>
+          <p class="text-primary">Phone: +90 556 021 12 35</p>
+          <p class="text-primary">Payment Accepted</p>
+          <img src="img/payment.png" class="img-fluid" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Footer End -->
+<div class="container-fluid copyright bg-light py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+        <span class="text-light"><a href="#"></a>&nbsp;</span>
+      </div>
+      <div class="col-md-6 my-auto text-center text-md-end text-primary">
+        Designed By
+        <a class="border-bottom" href="https://github.com/melikeay45"
+          >Melike Aydın</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
