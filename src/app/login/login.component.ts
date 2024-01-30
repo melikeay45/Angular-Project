@@ -30,7 +30,7 @@ export class LoginComponent {
         if (res.success) {
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('type', res.data.userType);
-
+          location.reload();
           this.router.navigate(['/']);
         } else {
           alert(res.message);
