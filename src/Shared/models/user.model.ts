@@ -6,6 +6,6 @@ export interface User {
   password: string;
   email: string;
   address: string;
-  phoneNumber: number;
+  phoneNumber: string;
   isDelete: boolean;
 }

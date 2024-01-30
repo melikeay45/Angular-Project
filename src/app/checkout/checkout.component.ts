@@ -9,6 +9,8 @@ import { Order } from '../../Shared/models/order.model';
 import { FormsModule } from '@angular/forms';
 import { OrderService } from '../Services/order.service';
 import { environment } from '../../environments/environment';
+import { Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-checkout',
@@ -26,7 +28,8 @@ export class CheckoutComponent {
     private router: ActivatedRoute,
     private cartService: CartService,
     private productService: ProductService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private _router: Router
   ) {}
 
   cartProductViewModel: CartProductViewModel[] = [];
@@ -110,7 +113,7 @@ export class CheckoutComponent {
     this.orderService.AddOrder(orders).subscribe(
       (response) => {
         console.log('İstek başarılı:', response);
-        
+        this._router.navigate(['/']);
       },
       (error) => {
         console.error('İstek hatası:', error);

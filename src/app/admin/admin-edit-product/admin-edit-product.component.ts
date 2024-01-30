@@ -27,7 +27,7 @@ export class AdminEditProductComponent {
     productID: 0,
     categoryID: 0,
     productName: '',
-    productDescriptinon: '',
+    productDescription: '',
     price: 0,
     stockQuantity: 0,
     imageURL: '',
@@ -39,7 +39,7 @@ export class AdminEditProductComponent {
     productID: 0,
     categoryID: 0,
     productName: '',
-    productDescriptinon: '',
+    productDescription: '',
     price: 0,
     stockQuantity: 0,
     imageURL: '',
@@ -84,7 +84,7 @@ export class AdminEditProductComponent {
     formData.append('productName', this.selectedProduct.productName);
     formData.append(
       'productDescription',
-      this.selectedProduct.productDescriptinon
+      this.selectedProduct.productDescription
     );
     formData.append('price', this.selectedProduct.price.toString());
 
@@ -107,7 +107,7 @@ export class AdminEditProductComponent {
       _formData.append('file', this.selectedFile, this.selectedFile.name);
     }
     _formData.append('productName', this.addProduct.productName);
-    _formData.append('productDescription', this.addProduct.productDescriptinon);
+    _formData.append('productDescription', this.addProduct.productDescription);
     _formData.append('price', this.addProduct.price.toString());
     _formData.append('categoryID', category.categoryID.toString());
     this.productService.addProduct(_formData).subscribe(

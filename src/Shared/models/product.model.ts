@@ -5,7 +5,7 @@ export interface Product {
   productID: number;
   categoryID: number;
   productName: string;
-  productDescriptinon: string;
+  productDescription: string;
   price: number;
   stockQuantity: number;
   imageURL: string;
