@@ -34,6 +34,10 @@ export class OrderService {
   //   return this.cartClearSubject.asObservable();
   // }
 
+  GetAllOrder():Observable<any>{
+  return this.apiService.getTypeRequest('OrderApi/GetAll');
+  }
+
   //Kullanıcı id sine göre siparişleri getirir
   GetOrderByUserID(): Observable<any> {
     return this.apiService.getTypeRequest('OrderApi/' + 'GetOrdersByUserID');

@@ -14,6 +14,10 @@ export class UserService {
 
   constructor(private http: HttpClient, private apiService: ApiService) {}
 
+  GetAllUser():Observable<any>{
+    return this.apiService.getTypeRequest('UserApi/GetAll');
+    }
+
   getUserByUserID(): Observable<ApiResult<string>> {
     return this.http.get<ApiResult<string>>(this.APIAddress + 'Get');
   }

@@ -1,0 +1,66 @@
+<div class="container-fluid py-5" style="margin-top: 10px">
+  <div class="col-lg-4 text-start" style="margin-left: 150px">
+    <h1 style="color: #a6d8ed"><strong>Siparişler</strong></h1>
+  </div>
+
+  <div class="container py-5" style="margin-top: -50px">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Ürün</th>
+            <th scope="col">Ürün Adı</th>
+            <th scope="col">Sipariş Sahibi Kullanıcıadı</th>
+            <th scope="col">Sipariş Sahibi Telefonu</th>
+            <th scope="col">Sipariş Adedi</th>
+            <th scope="col">Adress</th>
+            <th scope="col">Sipariş Durumu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let order of modelView; let i = index">
+            <tr>
+              <td>
+                <p class="mb-0 mt-4">{{ order.categoryName }}</p>
+              </td>
+              <td>
+                <p class="mb-0 mt-4">{{ order.description }}</p>
+              </td>
+              <td>
+                <p class="mb-0 mt-4">{{ order.description }}</p>
+              </td>
+              <td>
+                <p class="mb-0 mt-4">{{ order.description }}</p>
+              </td>
+              <td>
+                <p class="mb-0 mt-4">{{ order.description }}</p>
+              </td>
+              <td>
+                <p class="mb-0 mt-4">{{ order.description }}</p>
+              </td>
+              <td>
+                <div class="mb-3">
+                  <select
+                    class="form-select"
+                    id="productCategory"
+                    name="productCategory"
+                    [(ngModel)]="selectedStatus"
+                    (change)="onSelectStatus($event)"
+                  >
+                    <option value="" disabled selected>Seçiniz</option>
+                    <option [value]="order.orderStatus">
+                      Siparişiniz alındı.
+                    </option>
+                    <option>Siparişiniz hazırlanıyor.</option>
+                    <option>Siparişiniz kargoya verildi.</option>
+                    <option>Siparişiniz teslim edildi.</option>
+                  </select>
+                </div>
+              </td>
+            </tr></ng-container
+          >
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,6 @@ import { CartService } from '../Services/cart.service';
 import { ProductService } from '../Services/product.service';
 import { forkJoin } from 'rxjs';
 import { Order } from '../../Shared/models/order.model';
-import { OrderDetail } from '../../Shared/models/orderDetail.model';
 import { FormsModule } from '@angular/forms';
 import { OrderService } from '../Services/order.service';
 
