@@ -62,7 +62,7 @@
                         "
                         (click)="deleteProduct(product.productID)"
                       >
-                        <i class="fa fa-shopping-bag me-2 text-primary"></i> Sil
+                        <i class="fa fa-times text-danger text-primary"></i> Sil
                       </a>
                     </div>
                     <div class="col-md-7" style="margin-top: 20px">
@@ -76,7 +76,7 @@
                         data-bs-toggle="modal"
                         data-bs-target="#productUpdateModal"
                       >
-                        <i class="fa fa-shopping-bag me-2 text-primary"></i>
+                        <i class="fa-solid fa-spinner me-2 text-primary"></i>
                         Güncelle
                       </a>
                     </div>
@@ -164,7 +164,8 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Kapat
         </button>
-        <button type="button" class="btn btn-primary" (click)="onSubmit()">
+        <button type="button" class="btn btn-primary" (click)="onSubmit()"           data-bs-dismiss="modal"
+        >
           Kaydet
         </button>
       </div>

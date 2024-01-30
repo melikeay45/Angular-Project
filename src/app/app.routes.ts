@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/NavbarComponent';
 import { AdminEditProductComponent } from './admin/admin-edit-product/admin-edit-product.component';
 import { LoginAdminGuard } from '../guards/login-guard-admin.guard';
 import { NoAdminGuard } from '../guards/no-admin.guard';
+import { AdminEditCategoryComponent } from './admin/admin-edit-category/admin-edit-category.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [NoAdminGuard] },
@@ -42,6 +43,11 @@ export const routes: Routes = [
   {
     path: 'admineditProduct',
     component: AdminEditProductComponent,
+    canActivate: [LoginAdminGuard],
+  },
+  {
+    path: 'admineditCategory',
+    component: AdminEditCategoryComponent,
     canActivate: [LoginAdminGuard],
   },
 ];

@@ -1,0 +1,210 @@
+<div class="container-fluid py-5"  style="margin-top: 10px;">
+  <div class="col-lg-4 text-start" style="margin-left:150px">
+    <h1 style="color: #a6d8ed"><strong>Kategoriler</strong></h1>
+  </div>
+  <div class="col-lg-8 text-end" style="margin-top: -45px; margin-left: 300px;">
+    <ul class="nav nav-pills d-inline-flex text-center mb-5">
+      <li class="nav-item">
+        <a
+          class="d-flex m-2 py-2 rounded-pill btn btn-light"
+          data-bs-toggle="modal"
+          data-bs-target="#categoryAddModal"
+          (click)="openAddModal()"
+          style="cursor: pointer; background-color: #a6d8ed"
+        >
+          <span style="width: 130px; color: white; font-size: large"
+            ><strong>Kategori Ekle</strong></span
+          >
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="container py-5" style="margin-top:-50px">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Kategori</th>
+            <th scope="col">Kategori Açıklaması</th>
+            <th scope="col">Güncelle</th>
+            <th scope="col">Sil</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let category of categories; let i = index">
+            <tr>
+              <td>
+                <p class="mb-0 mt-4">{{ category.categoryName }}</p>
+              </td>
+              <td>
+                <p class="mb-0 mt-4">{{ category.description }}</p>
+              </td>
+              <td>
+                <div class="col-md-7" style="margin-top: 20px">
+                  <a
+                    class="btn rounded-pill px-3 text-primary"
+                    style="
+                      border: 3px solid #a6d8ed;
+                      border-radius: 0 0 10px 10px;
+                    "
+                    (click)="openModal(category.categoryID)"
+                    data-bs-toggle="modal"
+                    data-bs-target="#categoryUpdateModal"
+                  >
+                    <i class="fa-solid fa-spinner me-2 text-primary"></i>
+                    Güncelle
+                  </a>
+                </div>
+              </td>
+              <td>
+                <div class="col-md-7" style="margin-top: 20px">
+                  <a
+                    class="btn rounded-pill px-3 text-primary"
+                    style="
+                      border: 3px solid #a6d8ed;
+                      border-radius: 0 0 10px 10px;
+                    "
+                    (click)="deleteCategory(category.categoryID)"
+                  >
+                    <i class="fa fa-times text-danger"></i>
+                    Sil
+                  </a>
+                </div>
+              </td>
+            </tr></ng-container
+          >
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Kategori update modal -->
+<div
+  class="modal fade"
+  id="categoryUpdateModal"
+  tabindex="-1"
+  aria-labelledby="categoryUpdateModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="categoryUpdateModalLabel">
+          Kategoriyi Güncelle
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Güncelleme formu -->
+        <form>
+          <div class="mb-3">
+            <label for="categoryName" class="form-label">Kategori Adı</label>
+            <input
+              type="text"
+              class="form-control"
+              id="categoryName"
+              name="categoryName"
+              [(ngModel)]="selectedCategory.categoryName"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="categoryDescription" class="form-label"
+              >Kategori Açıklaması</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="description"
+              name="description"
+              [(ngModel)]="selectedCategory.description"
+            />
+          </div>
+          <!-- Diğer form alanları buraya eklenebilir -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Kapat
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="onSubmit()"
+          data-bs-dismiss="modal"
+        >
+          Kaydet
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Kategori Add modal -->
+<div
+  class="modal fade"
+  id="categoryAddModal"
+  tabindex="-1"
+  aria-labelledby="categoryAddModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="categoryAddModalLabel">Kategori Ekle</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Güncelleme formu -->
+        <form>
+          <div class="mb-3">
+            <label for="categoryName" class="form-label">Kategori Adı</label>
+            <input
+              type="text"
+              class="form-control"
+              id="categoryName"
+              name="categoryName"
+              [(ngModel)]="addCategory.categoryName"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="categoryDescription" class="form-label"
+              >Kategori Açıklaması</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="description"
+              name="description"
+              [(ngModel)]="addCategory.description"
+            />
+          </div>
+          <!-- Diğer form alanları buraya eklenebilir -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Kapat
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="onAddSubmit()"
+          data-bs-dismiss="modal"
+        >
+          Kaydet
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
